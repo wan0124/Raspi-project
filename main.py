@@ -23,7 +23,7 @@ pi.set_mode(DATA_PIN,pigpio.OUTPUT)
 def MCLK():
   while TRUE :
     pi.write(MCLK_PIN,pulse)
-    pulse=!pulse
+    pulse=~pulse
     count += 1
     time.sleep(1/(2*f))
   
@@ -47,7 +47,7 @@ def DATA():
   while TRUE :
     if pulse == 0 : 
       pi.write(DATA_PIN,data)
-      data=!data
+      data=~data
     
 thread.start_new_thread (MCLK())
 thread.start_new_thread (SCLK())
