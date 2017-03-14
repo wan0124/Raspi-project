@@ -36,6 +36,7 @@ def SCLK():
   else :
    pi.write(SCLK_PIN,0)
   while pulse==prepulse:
+   pass
 
 def LRCLK():
  pi.write(LRCLK_PIN,0)
@@ -47,11 +48,14 @@ def LRCLK():
    pi.write(LRCLK_PIN,0)
    count=1
   while pulse==prepulse:
+   pass
    
 def DATA():
   while TRUE :
    while pulse==0:
+    pass
    while pulse==1: 
+    pass
    pi.write(DATA_PIN,data)
    data=~data
      
