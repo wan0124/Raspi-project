@@ -29,26 +29,31 @@ def MCLK():
   
 def SCLK
   while TRUE :
+    prepulse=pulse
+   
     if pulse :
       pi.write(SCLK_PIN,1)
     else :
       pi.write(SCLK_PIN,0)
+    while pulse==prepulse:
 
 def LRCLK():
   pi.write(LRCLK_PIN,0)
   while TRUE :
+    prepulse=pulse
     if count == 16 :
-      pi.write(LRCLK_PIN,1)     
+      pi.write(LRCLK_PIN,1)
     elif count == 32:
       pi.write(LRCLK_PIN,0)
       count=1
-  
+   while pulse==prepulse:
 def DATA():
   while TRUE :
-    if pulse == 0 : 
+      while pulse==0:
+      while pulse==1: 
       pi.write(DATA_PIN,data)
       data=~data
-    
+     
 thread.start_new_thread (MCLK())
 thread.start_new_thread (SCLK())
 thread.start_new_thread (LRCLK())
