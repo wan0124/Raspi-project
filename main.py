@@ -24,7 +24,7 @@ def MCLK():
   while TRUE :
     pi.write(MCLK_PIN,pulse)
     pulse=!pulse
-    count++
+    count += 1
     time.sleep(1/(2*f))
   
 def SCLK
