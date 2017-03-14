@@ -27,7 +27,7 @@ def MCLK():
   count += 1
   time.sleep(1/(2*f))
   
-def SCLK
+def SCLK():
  while TRUE :
   prepulse=pulse
    
