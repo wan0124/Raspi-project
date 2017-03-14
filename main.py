@@ -2,10 +2,10 @@ import thread
 import time
 import pigpio
 
-MCLK_PIN=22
-SCLK_PIN=23
-LRCLK_PIN=24
-DATA_PIN=25
+MCLK_PIN=21
+SCLK_PIN=22
+LRCLK_PIN=23
+DATA_PIN=24
 f=44100
 count=1
 pulse=0
