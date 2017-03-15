@@ -1,4 +1,3 @@
-
 import thread
 import time
 import pigpio
@@ -22,14 +21,23 @@ pi.set_mode(LRCLK_PIN,pigpio.OUTPUT)
 pi.set_mode(DATA_PIN,pigpio.OUTPUT)
 
 def MCLK():
-  while TRUE :
-    pi.write(MCLK_PIN,pulse)
-    pulse=~pulse
+  global MCLK_PIN
+  global pulse
+  global count
+  global f
+  while True :
+    #pi.write(MCLK_PIN, 1)
+    pulse=not pulse
     count += 1
+    return count
+    print pulse
+    print count
     time.sleep(1/(2*f))
   
 def SCLK():
-  while TRUE :
+  global pulse
+  global SCLK_PIN
+  while True :
     prepulse=pulse
    
   if pulse :
@@ -40,8 +48,10 @@ def SCLK():
     pass
 
 def LRCLK():
+  global pulse
+  global LRCLK_PIN
   pi.write(LRCLK_PIN,0)
-  while TRUE :
+  while True :
     prepulse=pulse
   if count == 16 :
     pi.write(LRCLK_PIN,1)
@@ -52,7 +62,10 @@ def LRCLK():
     pass
    
 def DATA():
-  while TRUE :
+  global pulse
+  global DATA_PIN
+  global data
+  while True :
     while pulse==0:
       pass
     while pulse==1: 
@@ -60,7 +73,7 @@ def DATA():
     pi.write(DATA_PIN,data)
     data=~data
      
-thread.start_new_thread (MCLK())
-thread.start_new_thread (SCLK())
-thread.start_new_thread (LRCLK())
-thread.start_new_thread (DATA())
+thread.start_new_thread (MCLK)
+thread.start_new_thread (SCLK)
+thread.start_new_thread (LRCLK)
+thread.start_new_thread (DATA)
